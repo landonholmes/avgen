@@ -47,7 +47,7 @@ component name="AvGen" accessors="true" {
 		return createImage(arguments.backgroundColor,arguments.textColor,arguments.imageText);
 	}
 
-	public String function _dateTimeFormat(timestamp ts) {
+	public String function _dateTimeFormat(any ts) {
 		return "" & dateformat(ts,"YYYYDDMM") & timeformat(ts,"_HHmmss");
 	}
 
