@@ -1,3 +1,5 @@
 out/Thumbs.db
+out/*
+!out/avatar.png
 .idea/
 AvGen-localLucee.iml
