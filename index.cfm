@@ -36,6 +36,16 @@
 								<input type="textColor" id="textColor" name="textColor" class="form-control color" value="000000" />
 							</div>
 						</div>
+                        <div class="form-group">
+                            <label class="control-label col-md-6" for="font">Text Color:</label>
+                            <div class="col-md-6">
+	                            <select name="fontFamily" class="form-control ">
+		                            <option style="font-family: Arial;" value="Arial">Arial</option>
+		                            <option style="font-family: Courier New;" value="Courier New">Courier New</option>
+		                            <option style="font-family: Lucida Sans Typewriter;" value="Lucida Sans Typewriter">Lucida Sans Typewriter</option>
+	                            </select>
+                            </div>
+                        </div>
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-6">
 								<button type="button" class="btn btn-sm btn-primary doThings">Do Things</button>
@@ -73,12 +83,13 @@
             backgroundColor = $("input[name=backgroundColor]").val();
             imageText = $("input[name=imageText]").val();
             textColor = $("input[name=textColor]").val();
+            fontFamily = $("select[name=fontFamily] option:selected").text();
 
             $.ajax( {
                 "dataType": 'text',
                 "type": 'POST',
                 "url": 'AvGen.cfc?method=ajaxGenerateImage',
-                "data": {"backgroundColor":backgroundColor,"imageText":imageText,"textColor":textColor},
+                "data": {"backgroundColor":backgroundColor,"imageText":imageText,"textColor":textColor,"fontFamily":fontFamily},
                 "success": function(e) {
                     //console.log(e);
 	                $("img.avatarImage").attr("src","out/"+e);

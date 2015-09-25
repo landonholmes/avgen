@@ -15,13 +15,13 @@ component name="AvGen" accessors="true" {
 				return this;
 	}
 
-	public any function createImage(String backgroundColor, String textColor, String imageText) returnformat="plain"{
+	public any function createImage(String backgroundColor, String textColor, String imageText,String fontFamily) returnformat="plain"{
 		local.avatar = imageNew("",imageHeight,imageWidth,'',arguments.backgroundColor);
 		imageSetDrawingColor(local.avatar,arguments.textColor);
 
 		imageSetAntialiasing(local.avatar,'on');
 		textAttr = {
-			'font'='Arial'
+			'font'='#fontFamily#'
 			,'size'=150
 		};
 
@@ -44,7 +44,7 @@ component name="AvGen" accessors="true" {
 	remote String function ajaxGenerateImage() returnformat="plain" {
 		init(imageName=("avatar_" & arguments.imageText & "_" & _dateTimeFormat(now())));
 
-		return createImage(arguments.backgroundColor,arguments.textColor,arguments.imageText);
+		return createImage(arguments.backgroundColor,arguments.textColor,arguments.imageText,arguments.fontFamily);
 	}
 
 	public String function _dateTimeFormat(any ts) {
