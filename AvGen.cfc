@@ -6,7 +6,7 @@ component name="AvGen" accessors="true" {
 	public any function init(
 			Numeric imageHeight = 322
 			,Numeric imageWidth  = 322
-			,String imageName = ("avatar_" & timeFormat(now(),"yyyyddmm_hhmmss"))
+			,String imageName = ("avatar_" & _dateTimeFormat(now()))
 			) {
 				setImageHeight(arguments.imageHeight);
 				setImageWidth(arguments.imageWidth);
@@ -42,9 +42,13 @@ component name="AvGen" accessors="true" {
 	}
 
 	remote String function ajaxGenerateImage() returnformat="plain" {
-		init(imageName=("avatar_" & arguments.imageText & "_" & timeFormat(now(),"yyyyddmm_hhmmss")));
+		init(imageName=("avatar_" & arguments.imageText & "_" & _dateTimeFormat(now())));
 
 		return createImage(arguments.backgroundColor,arguments.textColor,arguments.imageText);
+	}
+
+	public String function _dateTimeFormat(timestamp ts) {
+		return "" & dateformat(ts,"YYYYDDMM") & timeformat(ts,"_HHmmss");
 	}
 
 
