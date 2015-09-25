@@ -14,30 +14,25 @@
 	<cfoutput>
 	    <div class="container">
 		    <h2>Create an Avatar Image</h2>
-		    <div class="row">
-			    <div class="col-md-4 col-md-offset-1">
-					<img class="img-thumbnail avatarImage" src="out/avatar.png" />
-			    </div>
-		    </div>
 		    <div class="row">&nbsp;</div>
 		    <div class="row">
-			    <div class="col-md-12">
+			    <div class="col-md-4">
 					<form class="form-horizontal" id="avatarForm">
                         <div class="form-group">
-                            <label class="control-label col-md-2" for="backgroundColor">Background Color:</label>
-                            <div class="col-md-2">
+                            <label class="control-label col-md-6" for="backgroundColor">Background Color:</label>
+                            <div class="col-md-6">
                                 <input type="backgroundColor" id="backgroundColor" name="backgroundColor" class="form-control color" value="" />
                             </div>
                         </div>
 						<div class="form-group">
-							<label class="control-label col-md-2" for="imageText">Text:</label>
-							<div class="col-md-2">
+							<label class="control-label col-md-6" for="imageText">Text:</label>
+							<div class="col-md-6">
 								<input type="text" id="imageText" name="imageText" class="form-control" value="HI" maxlength="3"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="control-label col-md-2" for="textColor">Text Color:</label>
-							<div class="col-md-2">
+							<label class="control-label col-md-6" for="textColor">Text Color:</label>
+							<div class="col-md-6">
 								<input type="textColor" id="textColor" name="textColor" class="form-control color" value="000000" />
 							</div>
 						</div>
@@ -49,6 +44,19 @@
 						</div>
 					</form>
 			    </div>
+                <div class="col-md-8">
+	                <div class="row">
+                        <img class="img-thumbnail avatarImage" style="max-width: 150px;" src="out/avatar.png" />
+                        <img class="img-thumbnail avatarImage" style="max-width: 100px;" src="out/avatar.png" />
+                        <img class="img-thumbnail avatarImage" style="max-width: 50px;" src="out/avatar.png" />
+	                </div>
+	                <div class="row">&nbsp;</div>
+	                <div class="row">
+                        <img class="img-thumbnail img-circle avatarImage" style="max-width: 150px;" src="out/avatar.png" />
+                        <img class="img-thumbnail img-circle avatarImage" style="max-width: 100px;" src="out/avatar.png" />
+                        <img class="img-thumbnail img-circle avatarImage" style="max-width: 50px;" src="out/avatar.png" />
+	                </div>
+                </div>
 		    </div>
 
 	    </div>
