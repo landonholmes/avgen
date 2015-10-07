@@ -47,11 +47,11 @@ function drawAvatarOnACanvas(avatarProperties,canvas) {
     do {
         avatarProperties.fontSize--;
         context.font = ""+avatarProperties.fontSize+"px "+avatarProperties.fontFamily;
-    }while(context.measureText(avatarProperties.imageText).width>canvas.width/2); //TODO: this definitely needs adjusting or to be smarter
+    }while(context.measureText(avatarProperties.imageText).width>canvas.width*3/4);
 
     context.textAlign = "center";
     context.fillStyle = "#"+avatarProperties.textColor;
-    context.fillText(avatarProperties.imageText, canvasCssWidth / 2, canvasCssHeight / 1.5); //write in the canvas, TODO: the height needs to be smarter
+    context.fillText(avatarProperties.imageText, canvasCssWidth / 2, (canvasCssHeight/2+avatarProperties.fontSize/3)); //write in the canvas,
 }
 
 
