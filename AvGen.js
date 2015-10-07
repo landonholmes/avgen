@@ -1,5 +1,5 @@
 function downloadImage() {
-    this.href = PAGE.avatarCanvasLg.toDataURL(); //convers the canvas into an image
+    this.href = PAGE.avatarCanvasRectLg.toDataURL(); //convers the canvas into an image
     this.download = 'avatar_'+$(PAGE.imageTextInput).val()+'.png'; //sets the download
 }
 
