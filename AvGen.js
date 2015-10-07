@@ -8,7 +8,7 @@ function generateImage() {
         backgroundColor: $(PAGE.backgroundColorInput).val()
         ,imageText: $(PAGE.imageTextInput).val()
         ,textColor: $(PAGE.textColorInput).val()
-        ,fontFamily: $(PAGE.fontFamilyInput).text()
+        ,fontFamily: $(PAGE.fontFamilyInput).find(":selected").text()
         ,fontSize: 128
     };
 
