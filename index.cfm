@@ -37,7 +37,7 @@
 							</div>
 						</div>
                         <div class="form-group">
-                            <label class="control-label col-md-6" for="font">Text Color:</label>
+                            <label class="control-label col-md-6" for="font">Font Family</label>
                             <div class="col-md-6">
 	                            <select name="fontFamily" class="form-control ">
 		                            <option style="font-family: Arial;" value="Arial">Arial</option>
@@ -49,61 +49,50 @@
 						<div class="form-group">
 							<div class="col-md-offset-2 col-md-6">
 								<button type="button" class="btn btn-sm btn-primary doThings">Do Things</button>
-                                <a href="out/avatar.png" type="button" class="btn btn-md btn-info" id="downloadButton" download="avatar.png"><i class="glyphicon glyphicon-download-alt"></i></a>
+                                <a type="button" class="btn btn-md btn-info" id="downloadButton"><i class="glyphicon glyphicon-download-alt"></i></a>
 							</div>
 						</div>
 					</form>
 			    </div>
                 <div class="col-md-8">
 	                <div class="row">
-                        <img class="img-thumbnail avatarImage" style="max-width: 150px;" src="out/avatar.png" />
-                        <img class="img-thumbnail avatarImage" style="max-width: 100px;" src="out/avatar.png" />
-                        <img class="img-thumbnail avatarImage" style="max-width: 50px;" src="out/avatar.png" />
+                        <canvas id="avatarCanvasRectLg" class="img-thumbnail" width="150" height="150"></canvas>
+                        <canvas id="avatarCanvasRectMd" class="img-thumbnail" width="100" height="100"></canvas>
+                        <canvas id="avatarCanvasRectSm" class="img-thumbnail" width="50" height="50"></canvas>
 	                </div>
-	                <div class="row">&nbsp;</div>
-	                <div class="row">
-                        <img class="img-thumbnail img-circle avatarImage" style="max-width: 150px;" src="out/avatar.png" />
-                        <img class="img-thumbnail img-circle avatarImage" style="max-width: 100px;" src="out/avatar.png" />
-                        <img class="img-thumbnail img-circle avatarImage" style="max-width: 50px;" src="out/avatar.png" />
-	                </div>
+	                <!---<div class="row">
+                        <canvas id="avatarCanvasCirLg" class="img-thumbnail img-circle" width="150" height="150"></canvas>
+                        <canvas id="avatarCanvasCirMd" class="img-thumbnail img-circle" width="100" height="100"></canvas>
+                        <canvas id="avatarCanvasCirSm" class="img-thumbnail img-circle" width="50" height="50"></canvas>
+	                </div>--->
                 </div>
 		    </div>
-
 	    </div>
-
-		<!---<cfset AvGenComponent = createObject("component","AvGen").init().createImage("white","black","test") />--->
 
 	</cfoutput>
 
+	<script src="AvGen.js"></script>
     <script>
-        //$("form.avatarForm").on("change","input",regenerateImage);
-		$("button.doThings").on("click",regenerateImage);
+		$("button.doThings").on("click",generateImage);
+		$("a#downloadButton").on("click",downloadImage);
 
-        function regenerateImage() {
-            backgroundColor = $("input[name=backgroundColor]").val();
-            imageText = $("input[name=imageText]").val();
-            textColor = $("input[name=textColor]").val();
-            fontFamily = $("select[name=fontFamily] option:selected").text();
+		$(document).ready(function(){ setTimeout(generateImage,500); }); //to display a default image (timeout is because there's a lag for the canvas or something, idk)
 
-            $.ajax( {
-                "dataType": 'text',
-                "type": 'POST',
-                "url": 'AvGen.cfc?method=ajaxGenerateImage',
-                "data": {"backgroundColor":backgroundColor,"imageText":imageText,"textColor":textColor,"fontFamily":fontFamily},
-                "success": function(e) {
-                    //console.log(e);
-	                $("img.avatarImage").attr("src","out/"+e);
-                    $("a#downloadButton").attr("download",e);
-                    $("a#downloadButton").attr("href","out/"+e);
-                },
-                "timeout": 15000,
-                "error": function(e) {
-                    console.log('err: ',e);
-                }
-            });
-        }
-
-
+		//some variables used in the .js
+        var PAGE = {
+            backgroundColorInput: $("input[name=backgroundColor]")
+            ,imageTextInput: $("input[name=imageText]")
+            ,textColorInput: $("input[name=textColor]")
+            ,fontFamilyInput: $("select[name=fontFamily] option:selected")
+	        ,avatarImg: $("img.avatarImage")
+	        ,avatarDownloadButton: $("a#downloadButton")
+	        ,avatarCanvasRectLg: $("canvas#avatarCanvasRectLg")[0]
+	        ,avatarCanvasRectMd: $("canvas#avatarCanvasRectMd")[0]
+	        ,avatarCanvasRectSm: $("canvas#avatarCanvasRectSm")[0]
+	        ,avatarCanvasCirLg: $("canvas#avatarCanvasCirLg")[0]
+	        ,avatarCanvasCirMd: $("canvas#avatarCanvasCirMd")[0]
+	        ,avatarCanvasCirSm: $("canvas#avatarCanvasCirSm")[0]
+        };
     </script>
 
   </body>
