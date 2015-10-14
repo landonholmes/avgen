@@ -45,9 +45,15 @@ function drawAvatarOnACanvas(avatarProperties,canvas) {
     context.fillStyle = "#"+avatarProperties.backgroundColor;
     context.fillRect (0, 0, canvas.width, canvas.height);
 
+
+    //this loop checks to see if the border size is too large and reduces it to fit the canvas better
+    var borderRatio = avatarProperties.borderThickness/$(PAGE.avatarCanvasRectLg).attr("width");
+    console.log(borderRatio);
+    avatarProperties.borderThickness = avatarProperties.borderThickness*borderRatio;
+
     //draw the border
-    context.strokeStyle = "#"+avatarProperties.borderColor;
     context.lineWidth = avatarProperties.borderThickness;
+    context.strokeStyle = "#"+avatarProperties.borderColor;
     context.strokeRect(0,0,canvas.width, canvas.height);
 
     //this loop checks to see if the font size is too large and reduces it to fit the canvas better
