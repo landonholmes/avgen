@@ -54,7 +54,19 @@
 					<div class="form-group">
 						<label class="control-label col-md-6" for="backgroundColor">Background Color:</label>
 						<div class="col-md-6">
-							<input type="backgroundColor" id="backgroundColor" name="backgroundColor" class="form-control color" value="" />
+							<input type="textColor" id="backgroundColor" name="backgroundColor" class="form-control color" value="" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-6" for="borderColor">Border Color:</label>
+						<div class="col-md-6">
+							<input type="borderColor" id="borderColor" name="borderColor" class="form-control color" value="" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-6" for="borderThickness">Border Thickness:</label>
+						<div class="col-md-6">
+							<input type="number" id="borderThickness" name="borderThickness" class="form-control" value="1" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -66,9 +78,9 @@
 			</div>
 			<div class="col-md-8">
 				<div class="row">
-					<canvas id="avatarCanvasRectLg" class="img-thumbnail" width="150" height="150"></canvas>
-					<canvas id="avatarCanvasRectMd" class="img-thumbnail" width="100" height="100"></canvas>
-					<canvas id="avatarCanvasRectSm" class="img-thumbnail" width="50" height="50"></canvas>
+					<canvas id="avatarCanvasRectLg" class="" width="150" height="150"></canvas>
+					<canvas id="avatarCanvasRectMd" class="" width="100" height="100"></canvas>
+					<canvas id="avatarCanvasRectSm" class="" width="50" height="50"></canvas>
 				</div>
 				<!---<div class="row">
 					<canvas id="avatarCanvasCirLg" class="img-thumbnail img-circle" width="150" height="150"></canvas>
@@ -88,10 +100,12 @@
 
 		//some variables used in the .js
         var PAGE = {
-            backgroundColorInput: $("input[name=backgroundColor]")
-            ,imageTextInput: $("input[name=imageText]")
+			imageTextInput: $("input[name=imageText]")
+			,fontFamilyInput: $("select[name=fontFamily]")
             ,textColorInput: $("input[name=textColor]")
-            ,fontFamilyInput: $("select[name=fontFamily]")
+			,backgroundColorInput: $("input[name=backgroundColor]")
+			,borderColorInput: $("input[name=borderColor]")
+			,borderThicknessInput: $("input[name=borderThickness]")
 	        ,avatarImg: $("img.avatarImage")
 	        ,avatarDownloadButton: $("a#downloadButton")
 	        ,avatarCanvasRectLg: $("canvas#avatarCanvasRectLg")[0]

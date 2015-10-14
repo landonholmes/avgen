@@ -5,10 +5,12 @@ function downloadImage() {
 
 function generateImage() {
     var avatarProps = { //grabbing the values of hte inputs
-        backgroundColor: $(PAGE.backgroundColorInput).val()
-        ,imageText: $(PAGE.imageTextInput).val()
-        ,textColor: $(PAGE.textColorInput).val()
+        imageText: $(PAGE.imageTextInput).val()
         ,fontFamily: $(PAGE.fontFamilyInput).find(":selected").text()
+        ,textColor: $(PAGE.textColorInput).val()
+        ,backgroundColor: $(PAGE.backgroundColorInput).val()
+        ,borderColor: $(PAGE.borderColorInput).val()
+        ,borderThickness: $(PAGE.borderThicknessInput).val()
         ,fontSize: 128
     };
 
@@ -42,6 +44,11 @@ function drawAvatarOnACanvas(avatarProperties,canvas) {
     //color in the background
     context.fillStyle = "#"+avatarProperties.backgroundColor;
     context.fillRect (0, 0, canvas.width, canvas.height);
+
+    //draw the border
+    context.strokeStyle = "#"+avatarProperties.borderColor;
+    context.lineWidth = avatarProperties.borderThickness;
+    context.strokeRect(0,0,canvas.width, canvas.height);
 
     //this loop checks to see if the font size is too large and reduces it to fit the canvas better
     do {
