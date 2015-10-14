@@ -17,21 +17,9 @@
 			<div class="col-md-4">
 				<form class="form-horizontal" id="avatarForm">
 					<div class="form-group">
-						<label class="control-label col-md-6" for="backgroundColor">Background Color:</label>
-						<div class="col-md-6">
-							<input type="backgroundColor" id="backgroundColor" name="backgroundColor" class="form-control color" value="" />
-						</div>
-					</div>
-					<div class="form-group">
 						<label class="control-label col-md-6" for="imageText">Text:</label>
 						<div class="col-md-6">
 							<input type="text" id="imageText" name="imageText" class="form-control" value="HI" maxlength="3"/>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="control-label col-md-6" for="textColor">Text Color:</label>
-						<div class="col-md-6">
-							<input type="textColor" id="textColor" name="textColor" class="form-control color" value="000000" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -58,8 +46,19 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="control-label col-md-6" for="textColor">Text Color:</label>
+						<div class="col-md-6">
+							<input type="textColor" id="textColor" name="textColor" class="form-control color" value="000000" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-6" for="backgroundColor">Background Color:</label>
+						<div class="col-md-6">
+							<input type="backgroundColor" id="backgroundColor" name="backgroundColor" class="form-control color" value="" />
+						</div>
+					</div>
+					<div class="form-group">
 						<div class="col-md-offset-2 col-md-6">
-							<button type="button" class="btn btn-sm btn-primary doThings">Do Things</button>
 							<a type="button" class="btn btn-md btn-info" id="downloadButton"><i class="glyphicon glyphicon-download-alt"></i></a>
 						</div>
 					</div>
@@ -82,7 +81,7 @@
 
 	<script src="AvGen.js"></script>
     <script>
-		$("button.doThings").on("click",generateImage);
+		$(".form-control").on("change",generateImage);
 		$("a#downloadButton").on("click",downloadImage);
 
 		$(document).ready(function(){ setTimeout(generateImage,500); }); //to display a default image (timeout is because there's a lag for the canvas or something, idk)
