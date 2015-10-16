@@ -46,10 +46,15 @@ function drawAvatarOnACanvas(avatarProperties,canvas) {
     context.fillRect (0, 0, canvas.width, canvas.height);
 
 
-    //this loop checks to see if the border size is too large and reduces it to fit the canvas better
-    var borderRatio = avatarProperties.borderThickness/$(PAGE.avatarCanvasRectLg).attr("width");
-    console.log(borderRatio);
+    //scale the border for smaller canvases
+    var borderRatio = avatarProperties.borderThickness*2/$(PAGE.avatarCanvasRectLg).attr("width");
+    console.log('-----------------------');
+    console.log(avatarProperties.borderThickness);
     avatarProperties.borderThickness = avatarProperties.borderThickness*borderRatio;
+    console.log(avatarProperties.borderThickness);
+    console.log(borderRatio);
+    console.log('-----------------------');
+    if (avatarProperties.borderThickness < 1 && avatarProperties.borderThickness > 0) {avatarProperties.borderThickness = 1;}
 
     //draw the border
     context.lineWidth = avatarProperties.borderThickness;
