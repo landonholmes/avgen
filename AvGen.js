@@ -6,7 +6,7 @@ function downloadImage() {
 function generateImage() {
     var avatarProps = { //grabbing the values of hte inputs
         imageText: $(PAGE.imageTextInput).val()
-        ,fontFamily: $(PAGE.fontFamilyInput).find(":selected").text()
+        ,font: $(PAGE.fontInput).find(":selected").text()
         ,textColor: $(PAGE.textColorInput).val()
         ,backgroundColor: $(PAGE.backgroundColorInput).val()
         ,borderColor: $(PAGE.borderColorInput).val()
@@ -48,12 +48,7 @@ function drawAvatarOnACanvas(avatarProperties,canvas) {
 
     //scale the border for smaller canvases
     var borderRatio = avatarProperties.borderThickness*2/$(PAGE.avatarCanvasRectLg).attr("width");
-    console.log('-----------------------');
-    console.log(avatarProperties.borderThickness);
     avatarProperties.borderThickness = avatarProperties.borderThickness*borderRatio;
-    console.log(avatarProperties.borderThickness);
-    console.log(borderRatio);
-    console.log('-----------------------');
     if (avatarProperties.borderThickness < 1 && avatarProperties.borderThickness > 0) {avatarProperties.borderThickness = 1;}
 
     //draw the border
@@ -64,7 +59,7 @@ function drawAvatarOnACanvas(avatarProperties,canvas) {
     //this loop checks to see if the font size is too large and reduces it to fit the canvas better
     do {
         avatarProperties.fontSize--;
-        context.font = ""+avatarProperties.fontSize+"px "+avatarProperties.fontFamily;
+        context.font = ""+avatarProperties.fontSize+"px "+avatarProperties.font;
     }while(context.measureText(avatarProperties.imageText).width>canvas.width*3/4);
 
     context.textAlign = "center";
