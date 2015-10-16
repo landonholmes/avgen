@@ -73,11 +73,8 @@ function drawAvatarOnACanvas(avatarProperties,canvas) {
     var y = (canvasCssHeight/2+avatarProperties.fontSize/3);
 
     if (allText.length > 1) {
-        for (var ii = 0; ii < allText.length; ii++) {
-
-            var line = allText[ii];
-
-            context.fillText(line, x, y - (avatarProperties.fontSize / allText.length));
+        for (var i = 0; i < allText.length; i++) {
+            context.fillText(allText[i], x, y - (avatarProperties.fontSize / allText.length));
             y += avatarProperties.fontSize * allText.length / 2;
         }
     } else {
