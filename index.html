@@ -94,6 +94,7 @@
 	<script src="AvGen.js"></script>
     <script>
 		$(".form-control").on("change",generateImage);
+		$("input[name=imageText]").on("keyup",generateImage);
 		$("a#downloadButton").on("click",downloadImage);
 
 		$(document).ready(function(){ setTimeout(generateImage,500); }); //to display a default image (timeout is because there's a lag for the canvas or something, idk)
