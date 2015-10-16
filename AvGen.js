@@ -58,16 +58,31 @@ function drawAvatarOnACanvas(avatarProperties,canvas) {
     context.strokeStyle = "#"+avatarProperties.borderColor;
     context.strokeRect(0,0,canvas.width, canvas.height);
 
+
+    var allText = avatarProperties.imageText.split("\\n");//see if there are any new lines
     //this loop checks to see if the font size is too large and reduces it to fit the canvas better
     do {
         avatarProperties.fontSize--;
         context.font = ""+avatarProperties.fontStyle+" "+avatarProperties.fontWeight+" "+avatarProperties.fontSize+"px "+avatarProperties.font;
-        console.log(context.font);
-    }while(context.measureText(avatarProperties.imageText).width>canvas.width*3/4);
+    }while(context.measureText(avatarProperties.imageText).width/allText.length>canvas.width*3/4);
 
     context.textAlign = "center";
     context.fillStyle = "#"+avatarProperties.textColor;
-    context.fillText(avatarProperties.imageText, canvasCssWidth / 2, (canvasCssHeight/2+avatarProperties.fontSize/3)); //write in the canvas,
+
+    var x = canvasCssWidth / 2;
+    var y = (canvasCssHeight/2+avatarProperties.fontSize/3);
+
+    if (allText.length > 1) {
+        for (var ii = 0; ii < allText.length; ii++) {
+
+            var line = allText[ii];
+
+            context.fillText(line, x, y - (avatarProperties.fontSize / allText.length));
+            y += avatarProperties.fontSize * allText.length / 2;
+        }
+    } else {
+        context.fillText(avatarProperties.imageText, canvasCssWidth / 2, (canvasCssHeight/2+avatarProperties.fontSize/3)); //write in the canvas,
+    }
 }
 
 
