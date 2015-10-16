@@ -7,6 +7,8 @@ function generateImage() {
     var avatarProps = { //grabbing the values of hte inputs
         imageText: $(PAGE.imageTextInput).val()
         ,font: $(PAGE.fontInput).find(":selected").text()
+        ,fontWeight: $(PAGE.fontWeightInput).find(":selected").text()
+        ,fontStyle: $(PAGE.fontStyleInput).find(":selected").text()
         ,textColor: $(PAGE.textColorInput).val()
         ,backgroundColor: $(PAGE.backgroundColorInput).val()
         ,borderColor: $(PAGE.borderColorInput).val()
@@ -59,7 +61,8 @@ function drawAvatarOnACanvas(avatarProperties,canvas) {
     //this loop checks to see if the font size is too large and reduces it to fit the canvas better
     do {
         avatarProperties.fontSize--;
-        context.font = ""+avatarProperties.fontSize+"px "+avatarProperties.font;
+        context.font = ""+avatarProperties.fontStyle+" "+avatarProperties.fontWeight+" "+avatarProperties.fontSize+"px "+avatarProperties.font;
+        console.log(context.font);
     }while(context.measureText(avatarProperties.imageText).width>canvas.width*3/4);
 
     context.textAlign = "center";

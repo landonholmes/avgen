@@ -46,6 +46,28 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="control-label col-md-6" for="fontWeight">Font Weight</label>
+						<div class="col-md-6">
+							<select name="fontWeight" id="fontWeight" class="form-control ">
+								<option style="font-weight: normal;" value="normal">Normal</option>
+								<option style="font-weight: bold;" value="bold">Bold</option>
+								<!--<option style="font-weight: bolder;" value="bolder">bolder</option>-->
+								<!--<option style="font-weight: lighter;" value="lighter">lighter</option>-->
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-6" for="fontStyle">Font Style</label>
+						<div class="col-md-6">
+							<select name="fontStyle" id="fontStyle" class="form-control ">
+								<option style="font-style: normal;" value="normal">Normal</option>
+								<option style="font-style: italic;" value="italic">Italic</option>
+								<!--<option style="font-weight: bolder;" value="bolder">bolder</option>-->
+								<!--<option style="font-weight: lighter;" value="lighter">lighter</option>-->
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="control-label col-md-6" for="textColor">Text Color:</label>
 						<div class="col-md-6">
 							<input type="textColor" id="textColor" name="textColor" class="form-control color" value="000000" />
@@ -103,6 +125,8 @@
         var PAGE = {
 			imageTextInput: $("input[name=imageText]")
 			,fontInput: $("select[name=font]")
+			,fontWeightInput: $("select[name=fontWeight]")
+			,fontStyleInput: $("select[name=fontStyle]")
             ,textColorInput: $("input[name=textColor]")
 			,backgroundColorInput: $("input[name=backgroundColor]")
 			,borderColorInput: $("input[name=borderColor]")
