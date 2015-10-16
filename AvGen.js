@@ -78,7 +78,7 @@ function drawAvatarOnACanvas(avatarProperties,canvas) {
             y += avatarProperties.fontSize * allText.length / 2;
         }
     } else {
-        context.fillText(avatarProperties.imageText, canvasCssWidth / 2, (canvasCssHeight/2+avatarProperties.fontSize/3)); //write in the canvas,
+        context.fillText(avatarProperties.imageText, x, y); //write in the canvas,
     }
 }
 
