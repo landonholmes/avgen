@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Avatar Generator</title>
+	<link rel="icon" href="./favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -19,21 +20,21 @@
 					<div class="form-group">
 						<label class="control-label col-md-6" for="imageText">Text:</label>
 						<div class="col-md-6">
-							<input type="text" id="imageText" name="imageText" class="form-control" value="HI" maxlength="3"/>
+							<input type="text" id="imageText" name="imageText" class="form-control" value="HI" />
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-6" for="fontFamily">Font Family</label>
+						<label class="control-label col-md-6" for="font">Font</label>
 						<div class="col-md-6">
-							<select name="fontFamily" id="fontFamily" class="form-control ">
+							<select name="font" id="font" class="form-control ">
 								<option disabled>--Serif Fonts--</option>
 								<option style="font-family: Georgia;" value="Georgia">Georgia</option>
 								<option style="font-family: Palatino Linotype;" value="Palatino Linotype">Palatino Linotype</option>
 								<option style="font-family: Times New Roman;" value="Times New Roman">Times New Roman</option>
 								<option disabled>--Sans-Serif Fonts--</option>
-								<option style="font-family: Arial;" value="Arial">Arial</option>
+								<option style="font-family: Arial;" value="Arial" selected>Arial</option>
 								<option style="font-family: Arial Black;" value="Arial Black">Arial Black</option>
-								<option style="font-family: Comic Sans MS;" value="Comic Sans MS" selected>Comic Sans MS</option>
+								<option style="font-family: Comic Sans MS;" value="Comic Sans MS">Comic Sans MS</option>
 								<option style="font-family: Impact;" value="Impact">Impact</option>
 								<option style="font-family: Lucida Sans Unicode;" value="Lucida Sans Unicode">Lucida Sans Unicode</option>
 								<option style="font-family: Tahoma;" value="Tahoma">Tahoma</option>
@@ -42,6 +43,28 @@
 								<option disabled>--Monospace Fonts--</option>
 								<option style="font-family: Courier New;" value="Courier New">Courier New</option>
 								<option style="font-family: Lucida Console;" value="Lucida Console">Lucida Console</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-6" for="fontWeight">Font Weight</label>
+						<div class="col-md-6">
+							<select name="fontWeight" id="fontWeight" class="form-control ">
+								<option style="font-weight: normal;" value="normal">Normal</option>
+								<option style="font-weight: bold;" value="bold">Bold</option>
+								<!--<option style="font-weight: bolder;" value="bolder">bolder</option>-->
+								<!--<option style="font-weight: lighter;" value="lighter">lighter</option>-->
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-6" for="fontStyle">Font Style</label>
+						<div class="col-md-6">
+							<select name="fontStyle" id="fontStyle" class="form-control ">
+								<option style="font-style: normal;" value="normal">Normal</option>
+								<option style="font-style: italic;" value="italic">Italic</option>
+								<!--<option style="font-weight: bolder;" value="bolder">bolder</option>-->
+								<!--<option style="font-weight: lighter;" value="lighter">lighter</option>-->
 							</select>
 						</div>
 					</div>
@@ -94,6 +117,7 @@
 	<script src="AvGen.js"></script>
     <script>
 		$(".form-control").on("change",generateImage);
+		$("input[name=imageText]").on("keyup",generateImage);
 		$("a#downloadButton").on("click",downloadImage);
 
 		$(document).ready(function(){ setTimeout(generateImage,500); }); //to display a default image (timeout is because there's a lag for the canvas or something, idk)
@@ -101,7 +125,9 @@
 		//some variables used in the .js
         var PAGE = {
 			imageTextInput: $("input[name=imageText]")
-			,fontFamilyInput: $("select[name=fontFamily]")
+			,fontInput: $("select[name=font]")
+			,fontWeightInput: $("select[name=fontWeight]")
+			,fontStyleInput: $("select[name=fontStyle]")
             ,textColorInput: $("input[name=textColor]")
 			,backgroundColorInput: $("input[name=backgroundColor]")
 			,borderColorInput: $("input[name=borderColor]")
@@ -117,5 +143,16 @@
         };
     </script>
 
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- AvGen_Ad -->
+	<ins class="adsbygoogle"
+		 style="display:block"
+		 data-ad-client="ca-pub-2033566386589480"
+		 data-ad-slot="7586774851"
+		 data-ad-format="auto"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
   </body>
 </html>

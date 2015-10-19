@@ -6,7 +6,9 @@ function downloadImage() {
 function generateImage() {
     var avatarProps = { //grabbing the values of hte inputs
         imageText: $(PAGE.imageTextInput).val()
-        ,fontFamily: $(PAGE.fontFamilyInput).find(":selected").text()
+        ,font: $(PAGE.fontInput).find(":selected").text()
+        ,fontWeight: $(PAGE.fontWeightInput).find(":selected").text()
+        ,fontStyle: $(PAGE.fontStyleInput).find(":selected").text()
         ,textColor: $(PAGE.textColorInput).val()
         ,backgroundColor: $(PAGE.backgroundColorInput).val()
         ,borderColor: $(PAGE.borderColorInput).val()
@@ -46,25 +48,38 @@ function drawAvatarOnACanvas(avatarProperties,canvas) {
     context.fillRect (0, 0, canvas.width, canvas.height);
 
 
-    //this loop checks to see if the border size is too large and reduces it to fit the canvas better
-    var borderRatio = avatarProperties.borderThickness/$(PAGE.avatarCanvasRectLg).attr("width");
-    console.log(borderRatio);
+    //scale the border for smaller canvases
+    var borderRatio = avatarProperties.borderThickness*2/$(PAGE.avatarCanvasRectLg).attr("width");
     avatarProperties.borderThickness = avatarProperties.borderThickness*borderRatio;
+    if (avatarProperties.borderThickness < 1 && avatarProperties.borderThickness > 0) {avatarProperties.borderThickness = 1;}
 
     //draw the border
     context.lineWidth = avatarProperties.borderThickness;
     context.strokeStyle = "#"+avatarProperties.borderColor;
     context.strokeRect(0,0,canvas.width, canvas.height);
 
+
+    var allText = avatarProperties.imageText.split("\\n");//see if there are any new lines
     //this loop checks to see if the font size is too large and reduces it to fit the canvas better
     do {
         avatarProperties.fontSize--;
-        context.font = ""+avatarProperties.fontSize+"px "+avatarProperties.fontFamily;
-    }while(context.measureText(avatarProperties.imageText).width>canvas.width*3/4);
+        context.font = ""+avatarProperties.fontStyle+" "+avatarProperties.fontWeight+" "+avatarProperties.fontSize+"px "+avatarProperties.font;
+    }while(context.measureText(avatarProperties.imageText).width/allText.length>canvas.width*3/4);
 
     context.textAlign = "center";
     context.fillStyle = "#"+avatarProperties.textColor;
-    context.fillText(avatarProperties.imageText, canvasCssWidth / 2, (canvasCssHeight/2+avatarProperties.fontSize/3)); //write in the canvas,
+
+    var x = canvasCssWidth / 2;
+    var y = (canvasCssHeight/2+avatarProperties.fontSize/3);
+
+    if (allText.length > 1) {
+        for (var i = 0; i < allText.length; i++) {
+            context.fillText(allText[i], x, y - (avatarProperties.fontSize / allText.length));
+            y += avatarProperties.fontSize * allText.length / 2;
+        }
+    } else {
+        context.fillText(avatarProperties.imageText, x, y); //write in the canvas,
+    }
 }
 
 
